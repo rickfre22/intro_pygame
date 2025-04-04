@@ -1,1 +1,84 @@
-# intro_pygame
+# estructura de un juego en py game
+
+## incializacion
+
+- commo en todo programa en python se deben importar las librerias a utilizar
+`import pygame`
+
+- inicilizar pypame usando la funciion inir(). incualiza todos los modulos de pygame
+importamos.`pygame.init()`
+
+## visualizacion de la ventana
+
+`ventana =pygame.display.set_mode((600,400))`
+
+- set_mode() es la funcion encargada de definir el tamaño de la ventana.  en el ejemplo, se esta definiendo una ventana de 600px de ancho, por 400px de alto.
+
+```pygame.display.set_caption("Mi ventana")```
+
+- set_caption es la funcion que añade un titulo a la ventana
+
+### funcion set_mode()
+
+`set_mode(size =(0,0),flags =0 ,depth = o,display = 0)`
+
+- size =(600,400):define el tamaño de la ventana.
+
+- flags: define uno o mas  comportamientos para la ventana
+    - valores:
+        pygame.FULLSCREEN
+        pygame.RESIZABLE
+    - Ejemplo:
+        - flags = pygame.FULLSCREN | pygame.RSIZABLE: pantalla completa.
+        dimesiones modificables.
+## bucle del juego - game loop
+- bucle  infinito que se interrumpirá  al cumplir ciertos criterios.
+- relog interno del juego
+- en cada interaciion del bucle del juego podemos mver a un personaje. o tenr en cuenta que un objecto a alcanzado a otro o se a cruzaddo la linea de llegada, lo que quiere decir que la partida ha terminado.
+- cada ieracion es una opurtiidad para actualizar todos los datos relacionados con el estado actual de la partida
+ - en cafa iteracion se realizan las siguientes tareas:
+    1. comprobar que no se alcanzan las condiciones de parada. en cuyo  caso se interrumpe el bucle.
+    2. actualizar los recursos necesarios para la iteracion actual
+    3. obtener las entradas  del sistema, o de interaccion con el juego
+    4. actualizar todas las entidades que caracterizan el juego.
+    5. refrescar la pantalla.
+
+## superficies pygame
+- superficie:  
+    - elemento geometrico.
+    - linea, poligono, imagen,texto, que se muestra en la patanlla
+    - el poligono se puede o no rellenar de color.
+    - las superficies se crean de diferente manera dependiendo el tipo:
+        - imagen: imagen.load()
+        - texto: font.render()
+        - superficie generica: pygame.surface()
+        - ventana del juego: pygame.display.set_mode()
+        - 
+        
+## ejemplo bander colombia
+```import pygame
+pygame.init()
+pygame.display.set_caption("colombia")
+ventana = pygame.display.set_mode((400,400))
+amarilllo = (255, 247, 0)
+azul = (0, 36, 255)
+rojo = (249, 4, 4)
+
+amarilllo_Superficie = pygame.Surface((400,200))
+azul_Superficie = pygame.Surface((400,100))
+rojo_Superficie = pygame.Surface((400,100))
+
+amarilllo_Superficie.fill(amarilllo)
+azul_Superficie.fill(azul)
+rojo_Superficie.fill(rojo)
+ventana.blit(amarilllo_Superficie,(0,0))
+ventana.blit(azul_Superficie,(0,200))
+ventana.blit(rojo_Superficie,(0,300))
+pygame.display.flip()
+while True:
+    event =pygame.event.wait()
+    if event.type == pygame.QUIT:
+        break
+pygame.quit() 
+```
+![Diagrama de flujo](screen01.jpg)
